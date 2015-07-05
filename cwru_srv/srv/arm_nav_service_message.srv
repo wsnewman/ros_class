@@ -1,0 +1,33 @@
+#some requests only require a command mode, e.g. request to execute a plan
+int32 cmd_mode
+
+#optionally, may need to specify a joint-space arm pose for start and/or finish
+float32[] q_vec_start
+float32[] q_vec_end
+
+#some requests require the client to specify start and/or goal tool poses
+#as pose-stamped, also includes the reference frame and time stamp
+geometry_msgs/PoseStamped poseStamped_start
+geometry_msgs/PoseStamped poseStamped_goal
+
+#if service has already computed a valid plan, the plan id will be made available to the client;
+#subsequently, the client can request that a named (plan_id) plan be executed
+int32 plan_id
+
+#this vector can be useful for specifying desired cartesian displacements
+float32[] delta_p 
+
+---
+#some responses require only true/false (e.g., good path/ no good path)
+bool bool_resp
+
+#more explanation may be required--as interpretable by return codes (integers)
+int32 rtn_code
+
+#if a plan has been computed, the server has this in memory, associated with a plan_id
+#client may refer to this plan_id for further examination or execution
+int32 plan_id
+
+#optionally, return joint-space arm pose(s) for start and/or finish, per plan
+float32[] q_vec_start
+float32[] q_vec_end
