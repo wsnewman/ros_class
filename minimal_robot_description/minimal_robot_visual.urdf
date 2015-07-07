@@ -16,9 +16,6 @@
       <geometry>
        <box size="0.2 0.2 1"/>
       </geometry>
-      <material name="blue">
-        <color rgba="0 0 .8 1"/>
-      </material>
     </visual>
   </link>
 
