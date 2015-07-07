@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot  name="one_DOF_robot">
+
+<!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="world"/>
+
+  <joint name="glue_robot_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="link1"/>
+  </joint>
+
+ <!-- Base Link -->
+  <link name="link1">
+    <visual>
+     <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+       <box size="0.2 0.2 1"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
+  </link>
+
+<!-- Moveable Link -->
+  <link name="link2">
+    <visual>
+     <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="1.0" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="joint1" type="continuous">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+</robot>
+
