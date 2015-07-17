@@ -11,6 +11,8 @@ void myCallback(const std_msgs::Float64& message_holder)
   // slowing down this function for display calls, and it makes the 
   // data available for viewing and logging purposes 
   ROS_INFO("received value is: %f",message_holder.data); 
+  if (message_holder.data>0.5) 
+      ROS_WARN("data is too big!!");
   //really could do something interesting here with the received data...but all we do is print it 
 } 
 
@@ -22,7 +24,9 @@ int main(int argc, char **argv)
   //create a Subscriber object and have it subscribe to the topic "topic1" 
   // the function "myCallback" will wake up whenever a new message is published to topic1 
   // the real work is done inside the callback function 
+  
   ros::Subscriber my_subscriber_object= n.subscribe("topic1",1,myCallback); 
+
   ros::spin(); //this is essentially a "while(1)" statement, except it 
   // forces refreshing wakeups upon new data arrival 
   // main program essentially hangs here, but it must stay alive to keep the callback function alive 

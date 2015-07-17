@@ -15,8 +15,8 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 # cs_add_libraries(my_lib src/my_lib.cpp)   
 
 # Executables
-cs_add_executable(interactive_marker_node src/IM_6dof.cpp)
-cs_add_executable(im_6dof_svc_client_test src/IM_6dof_svc_client_test.cpp)
+cs_add_executable(example_interactive_marker_node src/IM_6dof.cpp)
+cs_add_executable(example_im_6dof_svc_client src/IM_6dof_svc_client_test.cpp)
 # target_link_library(example my_lib)
 
 cs_install()

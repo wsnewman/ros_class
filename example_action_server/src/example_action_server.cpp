@@ -11,9 +11,9 @@
 #include<example_action_server/demoAction.h>
 
 int g_count = 0;
-bool count_failure = false;
+bool g_count_failure = false;
 
-class exampleActionServer {
+class ExampleActionServer {
 private:
 
     ros::NodeHandle nh_;  // we'll need a node handle; get one upon instantiation
@@ -32,9 +32,9 @@ private:
 
 
 public:
-    exampleActionServer(); //define the body of the constructor outside of class definition
+    ExampleActionServer(); //define the body of the constructor outside of class definition
 
-    ~exampleActionServer(void) {
+    ~ExampleActionServer(void) {
     }
     // Action Interface
     void executeCB(const actionlib::SimpleActionServer<example_action_server::demoAction>::GoalConstPtr& goal);
@@ -50,8 +50,8 @@ public:
 // using the "this" keyword.  the _1 argument says that our executeCB takes one argument
 // the final argument  "false" says don't start the server yet.  (We'll do this in the constructor)
 
-exampleActionServer::exampleActionServer() :
-   as_(nh_, "example_action", boost::bind(&exampleActionServer::executeCB, this, _1),false) 
+ExampleActionServer::ExampleActionServer() :
+   as_(nh_, "example_action", boost::bind(&ExampleActionServer::executeCB, this, _1),false) 
 // in the above initialization, we name the server "example_action"
 //  clients will need to refer to this name to connect with this server
 {
@@ -69,7 +69,7 @@ exampleActionServer::exampleActionServer() :
 // defined in our package, "example_action_server", in the subdirectory "action", called "demo.action"
 // The name "demo" is prepended to other message types created automatically during compilation.
 // e.g.,  "demoAction" is auto-generated from (our) base name "demo" and generic name "Action"
-void exampleActionServer::executeCB(const actionlib::SimpleActionServer<example_action_server::demoAction>::GoalConstPtr& goal) {
+void ExampleActionServer::executeCB(const actionlib::SimpleActionServer<example_action_server::demoAction>::GoalConstPtr& goal) {
     //ROS_INFO("in executeCB");
     //ROS_INFO("goal input is: %d", goal->input);
     //do work here: this is where your interesting code goes
@@ -95,7 +95,7 @@ void exampleActionServer::executeCB(const actionlib::SimpleActionServer<example_
     if (g_count != goal->input) {
         ROS_WARN("hey--mismatch!");
         ROS_INFO("g_count = %d; goal_stamp = %d", g_count, result_.goal_stamp);
-        count_failure = true; //set a flag to commit suicide
+        g_count_failure = true; //set a flag to commit suicide
         ROS_WARN("informing client of aborted goal");
         as_.setAborted(result_); // tell the client we have given up on this goal; send the result message as well
     }
@@ -109,12 +109,12 @@ int main(int argc, char** argv) {
 
     ROS_INFO("instantiating the demo action server: ");
 
-    exampleActionServer as; // create an instance of the class "exampleActionServer"
+    ExampleActionServer as_object; // create an instance of the class "exampleActionServer"
     
     ROS_INFO("going into spin");
     // from here, all the work is done in the action server, with the interesting stuff done within "executeCB()"
     // you will see 5 new topics under example_action: cancel, feedback, goal, result, status
-    while (!count_failure) {
+    while (!g_count_failure) {
         ros::spinOnce(); //normally, can simply do: ros::spin();  
         // for debug, induce a halt if we ever get our client/server communications out of sync
     }

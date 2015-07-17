@@ -1,5 +1,6 @@
 #include <ros/ros.h> //ALWAYS need to include this
 #include <visualization_msgs/Marker.h>
+#include <geometry_msgs/Point.h>
 #include <string.h>
 #include <stdio.h>  
 #include <cwru_srv/simple_float_service_message.h>
@@ -7,7 +8,7 @@ using namespace std;
 
 //set these two values by service callback, make available to "main"
 double g_z_test = 0.0;
-bool trigger = true;
+bool g_trigger = true;
 
 //a service to prompt a new display computation.
 // E.g., to construct a plane at height z=1.0, trigger with: 
@@ -16,7 +17,7 @@ bool displaySvcCB(cwru_srv::simple_float_service_messageRequest& request,
 	cwru_srv::simple_float_service_messageResponse& response) {
     g_z_test = request.request_float32;
     ROS_INFO("example_rviz_marker: received request for height %f", g_z_test);
-    trigger = true; // inform "main" a new computation is desired
+    g_trigger = true; // inform "main" a new computation is desired
     response.resp=true;
     return true;
 }
@@ -73,8 +74,8 @@ int main(int argc, char **argv) {
     double dy_des = 0.1;
 
     while (ros::ok()) {
-        if (trigger) {  // did service call for a new computation?
-            trigger = false; //reset the trigger from service
+        if (g_trigger) {  // did service call for a new computation?
+            g_trigger = false; //reset the trigger from service
             z_des = g_z_test; //use z-value from service callback
             ROS_INFO("constructing plane of markers at height %f",z_des);
     	    marker.header.stamp = ros::Time();

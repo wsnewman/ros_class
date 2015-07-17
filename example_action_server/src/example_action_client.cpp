@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
         example_action_server::demoGoal goal; 
         
         // use the name of our server, which is: example_action (named in example_action_server.cpp)
+        // the "true" argument says that we want our new client to run as a separate thread (a good idea)
         actionlib::SimpleActionClient<example_action_server::demoAction> action_client("example_action", true);
         
         // attempt to connect to the server:
