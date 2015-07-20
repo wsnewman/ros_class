@@ -104,7 +104,8 @@
       <parent link="link2"/>
       <child link="kinect_link"/>
   </joint>
-<!-- end wsn adding kinect link; -->
+<!-- end wsn adding kinect link; 
+
   <!-- wsn--add kinect sensor emulation-->
 <gazebo reference="kinect_link">
     <sensor type="depth" name="openni_camera_camera">       
@@ -125,11 +126,11 @@
                 <far>100</far>
             </clip>
         </camera>
-        <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
             <alwaysOn>true</alwaysOn>
                 <updateRate>10.0</updateRate>
-                <cameraName>kinect</cameraName>
-                <frameName>kinect_pc_frame</frameName>                   
+                <cameraName>kinect</cameraName>   
+                <frameName>kinect_sensor_frame</frameName>                
             <imageTopicName>rgb/image_raw</imageTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
