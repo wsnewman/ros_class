@@ -30,9 +30,28 @@ void posCmdCB(const std_msgs::Float64& pos_cmd_msg)
 int main(int argc, char **argv) {
     ros::init(argc, argv, "example_rviz_marker");
     ros::NodeHandle nh;
+    ros::Duration half_sec(0.5);
+    
+    // make sure service is available before attempting to proceed, else node will crash
+    bool service_ready = false;
+    while (!service_ready) {
+      service_ready = ros::service::exists("/gazebo/apply_joint_effort",true);
+      ROS_INFO("waiting for apply_joint_effort service");
+      half_sec.sleep();
+    }
+    ROS_INFO("apply_joint_effort service exists");
 
     ros::ServiceClient set_trq_client = 
        nh.serviceClient<gazebo_msgs::ApplyJointEffort>("/gazebo/apply_joint_effort");
+    
+    service_ready = false;
+    while (!service_ready) {
+      service_ready = ros::service::exists("/gazebo/get_joint_properties",true);
+      ROS_INFO("waiting for /gazebo/get_joint_properties service");
+      half_sec.sleep();
+    }
+    ROS_INFO("/gazebo/get_joint_properties service exists");
+    
     ros::ServiceClient get_jnt_state_client = 
        nh.serviceClient<gazebo_msgs::GetJointProperties>("/gazebo/get_joint_properties");
 
