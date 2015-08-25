@@ -13,7 +13,7 @@
 #include <vector>
 #include <iostream>
 //#include <Eigen/Eigen>  
-#include <cwru_srv/IM_node_service_message.h>
+#include <example_srv/IM_node_service_message.h>
 const int GET_CURRENT_MARKER_POSE=0;
 const int SET_NEW_MARKER_POSE= 1;
 
@@ -23,11 +23,11 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "IM_6dof_svc_client_test");
     ros::NodeHandle nh; //standard ros node handle    
 
-    cwru_srv::IM_node_service_message  IM_6dof_srv_msg;
+    example_srv::IM_node_service_message  IM_6dof_srv_msg;
     geometry_msgs::Pose pose;
     geometry_msgs::PoseStamped poseStamped;
     ROS_INFO("setting up a service client of rt_hand_marker");
-    ros::ServiceClient IM_6dof_svc_client = nh.serviceClient<cwru_srv::IM_node_service_message>("IM6DofSvc");
+    ros::ServiceClient IM_6dof_svc_client = nh.serviceClient<example_srv::IM_node_service_message>("IM6DofSvc");
 
     IM_6dof_srv_msg.request.cmd_mode = GET_CURRENT_MARKER_POSE;
     

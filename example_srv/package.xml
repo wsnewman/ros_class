@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>cwru_srv</name>
+  <name>example_srv</name>
   <version>0.0.0</version>
-  <description>The cwru_srv package</description>
+  <description>The example_srv package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <interactive_markers/interactive_marker_server.h>
 #include <geometry_msgs/Point.h>
-#include <cwru_srv/IM_node_service_message.h>
+#include <example_srv/IM_node_service_message.h>
 
 const int IM_GET_CURRENT_MARKER_POSE=0;
 const int IM_SET_NEW_MARKER_POSE= 1;
@@ -22,7 +22,7 @@ visualization_msgs::InteractiveMarkerFeedback *g_IM_feedback;
 //service:  return pose of marker from above globals;
 // depending on mode, move IM programmatically, 
  
-bool IM6DofSvcCB(cwru_srv::IM_node_service_messageRequest& request, cwru_srv::IM_node_service_messageResponse& response) {
+bool IM6DofSvcCB(example_srv::IM_node_service_messageRequest& request, example_srv::IM_node_service_messageResponse& response) {
     //if busy, refuse new requests;
 
     // for a simple status query, handle it now;

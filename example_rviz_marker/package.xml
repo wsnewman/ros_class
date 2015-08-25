@@ -43,13 +43,13 @@
   <build_depend>catkin_simple</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
-  <build_depend>cwru_srv</build_depend>
+  <build_depend>example_srv</build_depend>
   <build_depend>visualization_msgs</build_depend>
   <run_depend>catkin_simple</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>std_msgs</run_depend>
   <run_depend>visualization_msgs</run_depend>
-  <run_depend>cwru_srv</run_depend>
+  <run_depend>example_srv</run_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

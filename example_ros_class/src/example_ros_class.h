@@ -20,7 +20,7 @@
 #include <std_msgs/Bool.h> 
 #include <std_msgs/Float32.h>
 
-#include <cwru_srv/simple_bool_service_message.h> // this is a pre-defined service message, contained in shared "cwru_srv" package
+#include <example_srv/simple_bool_service_message.h> // this is a pre-defined service message, contained in shared "example_srv" package
 
 // define a class, including a constructor, member variables and member functions
 class ExampleRosClass
@@ -46,7 +46,7 @@ private:
     
     void subscriberCallback(const std_msgs::Float32& message_holder); //prototype for callback of example subscriber
     //prototype for callback for example service
-    bool serviceCallback(cwru_srv::simple_bool_service_messageRequest& request, cwru_srv::simple_bool_service_messageResponse& response);
+    bool serviceCallback(example_srv::simple_bool_service_messageRequest& request, example_srv::simple_bool_service_messageResponse& response);
 }; // note: a class definition requires a semicolon at the end of the definition
 
 #endif  // this closes the header-include trick...ALWAYS need one of these to match #ifndef

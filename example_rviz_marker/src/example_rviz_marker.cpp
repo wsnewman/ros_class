@@ -3,7 +3,7 @@
 #include <geometry_msgs/Point.h>
 #include <string.h>
 #include <stdio.h>  
-#include <cwru_srv/simple_float_service_message.h>
+#include <example_srv/simple_float_service_message.h>
 using namespace std;
 
 //set these two values by service callback, make available to "main"
@@ -13,8 +13,8 @@ bool g_trigger = true;
 //a service to prompt a new display computation.
 // E.g., to construct a plane at height z=1.0, trigger with: 
 // rosservice call rviz_marker_svc 1.0
-bool displaySvcCB(cwru_srv::simple_float_service_messageRequest& request,
-	cwru_srv::simple_float_service_messageResponse& response) {
+bool displaySvcCB(example_srv::simple_float_service_messageRequest& request,
+	example_srv::simple_float_service_messageResponse& response) {
     g_z_test = request.request_float32;
     ROS_INFO("example_rviz_marker: received request for height %f", g_z_test);
     g_trigger = true; // inform "main" a new computation is desired

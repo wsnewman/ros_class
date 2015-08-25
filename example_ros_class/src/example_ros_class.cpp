@@ -79,7 +79,7 @@ void ExampleRosClass::subscriberCallback(const std_msgs::Float32& message_holder
 
 
 //member function implementation for a service callback function
-bool ExampleRosClass::serviceCallback(cwru_srv::simple_bool_service_messageRequest& request, cwru_srv::simple_bool_service_messageResponse& response) {
+bool ExampleRosClass::serviceCallback(example_srv::simple_bool_service_messageRequest& request, example_srv::simple_bool_service_messageResponse& response) {
     ROS_INFO("service callback activated");
     response.resp = true; // boring, but valid response info
     return true;
