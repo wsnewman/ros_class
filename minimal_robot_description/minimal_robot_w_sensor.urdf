@@ -104,9 +104,9 @@
       <parent link="link2"/>
       <child link="kinect_link"/>
   </joint>
-<!-- end wsn adding kinect link; 
+<!-- end wsn adding kinect link; -->
 
-  <!-- wsn--add kinect sensor emulation-->
+  <!-- wsn: add kinect sensor emulation-->
 <gazebo reference="kinect_link">
     <sensor type="depth" name="openni_camera_camera">       
         <always_on>1</always_on>
